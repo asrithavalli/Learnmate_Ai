@@ -1,0 +1,187 @@
+/* ── Features section ────────────────────────────────────────── */
+.features {
+  padding: 6rem 1.5rem;
+  background: var(--grad-surface);
+  position: relative;
+  overflow: hidden;
+}
+
+.features::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--color-accent-light) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.features__container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Section header */
+.features__header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  max-width: 600px;
+  margin: 0 auto;
+  animation: fadeInUp 0.5s ease both;
+}
+
+.features__eyebrow {
+  display: inline-block;
+  padding: 0.32rem 0.95rem;
+  background: var(--color-accent-light);
+  color: var(--color-accent);
+  border: 1px solid #c7d2fe;
+  border-radius: 999px;
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.features__title {
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.features__subtitle {
+  font-size: 1.02rem;
+  color: var(--color-muted);
+  line-height: 1.75;
+}
+
+/* Grid */
+.features__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+/* ── Feature Card ────────────────────────────────────────────── */
+.feature-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.85rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.5s ease both;
+}
+
+/* Stagger cards */
+.features__grid .feature-card:nth-child(1) { animation-delay: 0.05s; }
+.features__grid .feature-card:nth-child(2) { animation-delay: 0.12s; }
+.features__grid .feature-card:nth-child(3) { animation-delay: 0.19s; }
+.features__grid .feature-card:nth-child(4) { animation-delay: 0.26s; }
+
+/* Hover gradient wash */
+.feature-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.04) 0%, rgba(124, 58, 237, 0.04) 100%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: #c7d2fe;
+}
+
+.feature-card:hover::before { opacity: 1; }
+
+/* Icon wrap */
+.feature-card__icon-wrap {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  background: var(--grad-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.25rem;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feature-card:hover .feature-card__icon-wrap {
+  transform: scale(1.1) rotate(-3deg);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+}
+
+.feature-card__icon { font-size: 1.5rem; line-height: 1; }
+
+/* Tag */
+.feature-card__tag {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Title */
+.feature-card__title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--color-text);
+  letter-spacing: -0.015em;
+}
+
+/* Description */
+.feature-card__description {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  line-height: 1.7;
+  flex: 1;
+}
+
+/* Link */
+.feature-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.35rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  transition: gap 0.2s ease, color var(--transition);
+}
+
+.feature-card__link:hover {
+  color: var(--color-secondary);
+  gap: 0.55rem;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .features { padding: 4rem 1.25rem; }
+  .features__grid { grid-template-columns: 1fr; }
+}

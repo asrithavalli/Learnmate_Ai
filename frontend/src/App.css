@@ -1,0 +1,67 @@
+/* ── App shell ──────────────────────────────────────────────── */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app__main {
+  flex: 1;
+  animation: fadeIn 0.3s ease;
+}
+
+/* ── Empty / gate-state pages ───────────────────────────────── */
+.page-empty {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 1.5rem;
+  gap: 1.1rem;
+  background: var(--grad-surface);
+}
+
+.page-empty__icon {
+  font-size: 4rem;
+  line-height: 1;
+  animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 4px 12px rgba(79, 70, 229, 0.2));
+}
+
+.page-empty__title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--color-text);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.page-empty__desc {
+  font-size: 1rem;
+  color: var(--color-muted);
+  max-width: 400px;
+  line-height: 1.75;
+}
+
+.page-empty__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+  padding: 0.8rem 2rem;
+  border-radius: var(--radius);
+  background: var(--grad-brand);
+  color: var(--color-white);
+  font-size: 0.95rem;
+  font-weight: 700;
+  transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
+  box-shadow: 0 4px 18px var(--color-accent-glow);
+}
+
+.page-empty__btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(79, 70, 229, 0.35);
+  filter: brightness(1.08);
+}

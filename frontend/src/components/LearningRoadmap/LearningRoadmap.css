@@ -1,0 +1,539 @@
+/* ─── LearningRoadmap ─────────────────────────────────────────
+   All classes scoped with .lr- prefix.
+─────────────────────────────────────────────────────────────── */
+
+/* ── Page wrapper ── */
+.lr-section {
+  background: var(--grad-surface);
+  padding: 4.5rem 1.5rem 5.5rem;
+}
+
+/* ── Page header ── */
+.lr-page-header {
+  max-width: 1100px;
+  margin: 0 auto 3rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  animation: fadeInUp 0.5s ease both;
+}
+
+.lr-page-header__eyebrow {
+  display: inline-block;
+  padding: 0.3rem 0.95rem;
+  background: var(--color-accent-light);
+  color: var(--color-accent);
+  border: 1px solid #c7d2fe;
+  border-radius: 999px;
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.lr-page-header__title {
+  font-size: clamp(1.7rem, 3.5vw, 2.5rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+  line-height: 1.15;
+}
+
+.lr-page-header__highlight {
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.lr-page-header__meta {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+/* ── Grid ── */
+.lr-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+/* 4-week plan card spans full width */
+.lr-grid > .lr-card:nth-child(3) {
+  grid-column: 1 / -1;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   BASE CARD
+───────────────────────────────────────────────────────────── */
+.lr-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  animation: fadeInUp 0.45s ease both;
+}
+
+.lr-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+
+/* Top gradient accent stripe */
+.lr-card::before {
+  content: '';
+  display: block;
+  height: 4px;
+  border-radius: 4px 4px 0 0;
+  flex-shrink: 0;
+}
+
+.lr-card--indigo::before { background: var(--grad-indigo); }
+.lr-card--violet::before { background: var(--grad-violet); }
+.lr-card--blue::before   { background: var(--grad-blue);   }
+.lr-card--teal::before   { background: var(--grad-teal);   }
+.lr-card--orange::before { background: var(--grad-orange); }
+.lr-card--green::before  { background: var(--grad-green);  }
+
+/* Card header */
+.lr-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1.5rem 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.lr-card__icon {
+  font-size: 1.4rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.lr-card__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+/* Card body */
+.lr-card__body {
+  padding: 1.25rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+}
+
+.lr-card__intro {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  line-height: 1.65;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   CHIPS & BADGES
+───────────────────────────────────────────────────────────── */
+.lr-chip {
+  display: inline-block;
+  padding: 0.18rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.lr-chip--purple {
+  background: #f5f3ff;
+  color: var(--color-secondary);
+  border: 1px solid #ddd6fe;
+}
+
+.lr-chip--green {
+  background: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+}
+
+.lr-chip--gray {
+  background: var(--color-surface);
+  color: var(--color-muted);
+  border: 1px solid var(--color-border);
+}
+
+/* Priority badges */
+.lr-badge {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.lr-badge--high   { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+.lr-badge--medium { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
+.lr-badge--low    { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+
+/* Difficulty badges */
+.lr-badge--diff-beginner     { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+.lr-badge--diff-intermediate { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
+.lr-badge--diff-advanced     { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+
+/* ─────────────────────────────────────────────────────────────
+   CARD 1 — SKILL GAP ANALYSIS
+───────────────────────────────────────────────────────────── */
+.lr-gap-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.lr-gap-row__meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+}
+
+.lr-gap-row__label {
+  font-size: 0.845rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.lr-gap-row__pct {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.lr-gap-row__track {
+  height: 8px;
+  background-color: var(--color-surface);
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.lr-gap-row__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-secondary) 100%);
+  border-radius: 999px;
+  transition: width 0.6s ease;
+}
+
+.lr-known-skills {
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.lr-known-skills__label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.lr-chip-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   CARD 2 — RECOMMENDED SKILLS
+───────────────────────────────────────────────────────────── */
+.lr-skills-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.lr-skills-list__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.lr-skills-list__item:last-child {
+  border-bottom: none;
+}
+
+.lr-skills-list__left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.lr-skills-list__name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   CARD 3 — 4-WEEK PLAN
+───────────────────────────────────────────────────────────── */
+.lr-weeks-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.lr-week {
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Coloured top header per week */
+.lr-week__header {
+  padding: 0.65rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.lr-week--indigo .lr-week__header { background: var(--grad-indigo); }
+.lr-week--violet .lr-week__header { background: var(--grad-violet); }
+.lr-week--blue   .lr-week__header { background: var(--grad-blue);   }
+.lr-week--teal   .lr-week__header { background: var(--grad-teal);   }
+
+.lr-week__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+}
+
+.lr-week__theme {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.lr-week__tasks {
+  list-style: none;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  background: var(--color-white);
+}
+
+.lr-week__task {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+.lr-week__check {
+  color: var(--color-accent);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   CARD 4 — FREE RESOURCES
+───────────────────────────────────────────────────────────── */
+.lr-resources-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+}
+
+.lr-resource-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  padding: 0.85rem 1rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-surface);
+  transition: border-color var(--transition), background var(--transition), transform var(--transition);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.lr-resource-card:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent-light);
+  transform: translateY(-2px);
+}
+
+.lr-resource-card__icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.lr-resource-card__title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   CARD 5 — BEGINNER PROJECTS
+───────────────────────────────────────────────────────────── */
+.lr-projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.lr-project {
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.lr-project:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.lr-project__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.lr-project__title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.lr-project__desc {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  line-height: 1.55;
+}
+
+.lr-project__stack {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+}
+
+.lr-project__stack-label {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   CARD 6 — DAILY TIPS
+───────────────────────────────────────────────────────────── */
+.lr-tips-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.lr-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.lr-tip:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.lr-tip__icon {
+  font-size: 1.1rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.lr-tip__text {
+  font-size: 0.875rem;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .lr-weeks-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .lr-resources-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .lr-section {
+    padding: 2.5rem 1rem 3.5rem;
+  }
+
+  .lr-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* reset full-width override since we're single column */
+  .lr-grid > .lr-card:nth-child(3) {
+    grid-column: auto;
+  }
+
+  .lr-weeks-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lr-resources-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 460px) {
+  .lr-resources-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lr-card__header {
+    padding: 1rem 1.25rem 0.65rem;
+  }
+
+  .lr-card__body {
+    padding: 1rem 1.25rem 1.25rem;
+  }
+}
