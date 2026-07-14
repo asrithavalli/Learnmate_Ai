@@ -1,13 +1,7 @@
-import axios from 'axios';
+import api from './axiosInstance';
 
-/**
- * POST /api/generate-quiz
- *
- * @param {{ careerGoal: string, skillGaps: Array, recommendedSkills: Array }} roadmap
- * @returns {Promise<{ careerGoal: string, generatedBy: string, questions: Array }>}
- */
 export async function generateQuiz(roadmap) {
-  const response = await axios.post('/api/generate-quiz', {
+  const response = await api.post('/api/generate-quiz', {
     careerGoal:        roadmap.careerGoal,
     skillGaps:         roadmap.skillGaps         || [],
     recommendedSkills: roadmap.recommendedSkills  || [],

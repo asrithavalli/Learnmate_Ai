@@ -16,11 +16,15 @@ async function connectDB() {
   }
 
   try {
-    await mongoose.connect(uri);
+    await mongoose.connect(uri, {
+      serverSelectionTimeoutMS: 10000,
+      socketTimeoutMS: 45000,
+      family: 4,
+    });
     console.log(`[DB] MongoDB connected: ${mongoose.connection.host}`);
   } catch (err) {
     console.error('[DB] Connection failed:', err.message);
-    process.exit(1);
+    console.warn('[DB] Running without database — profile features will be unavailable.');
   }
 }
 

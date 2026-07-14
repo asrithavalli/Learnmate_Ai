@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../../api/axiosInstance';
 import { useProfile } from '../../context/ProfileContext';
 import './StudentProfile.css';
 
@@ -76,7 +76,7 @@ function StudentProfile({ onSubmit }) {
   useEffect(() => {
     const savedEmail = localStorage.getItem('learnmate_email');
     if (savedEmail) {
-      axios.get(`/api/profiles?email=${encodeURIComponent(savedEmail)}`)
+      api.get(`/api/profiles?email=${encodeURIComponent(savedEmail)}`)
         .then((res) => {
           if (res.data.success && res.data.profiles && res.data.profiles.length > 0) {
             const profileData = res.data.profiles[0];

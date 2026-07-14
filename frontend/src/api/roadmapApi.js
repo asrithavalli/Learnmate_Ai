@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from './axiosInstance';
 
 /**
  * POST /api/generate-roadmap
@@ -22,7 +22,7 @@ export async function generateRoadmap(profile) {
     formData.append('resume', profile.resumeFile);
   }
 
-  const response = await axios.post('/api/generate-roadmap', formData, {
+  const response = await api.post('/api/generate-roadmap', formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },

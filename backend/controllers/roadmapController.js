@@ -31,17 +31,20 @@ async function generateRoadmap(req, res, next) {
         uploadedAt: new Date()
       };
     } else {
-      // Check if they had a previously uploaded resume
-      const existingProfile = await StudentProfile.findOne({ email: email.toLowerCase().trim() });
-      if (existingProfile && existingProfile.resume && existingProfile.resume.filePath) {
-        try {
-          resumeText = await extractTextFromFile(
-            existingProfile.resume.filePath,
-            existingProfile.resume.fileType
-          );
-        } catch (err) {
-          console.warn('[Resume] Failed to extract text from existing file:', err.message);
+      try {
+        const existingProfile = await StudentProfile.findOne({ email: email.toLowerCase().trim() });
+        if (existingProfile && existingProfile.resume && existingProfile.resume.filePath) {
+          try {
+            resumeText = await extractTextFromFile(
+              existingProfile.resume.filePath,
+              existingProfile.resume.fileType
+            );
+          } catch (err) {
+            console.warn('[Resume] Failed to extract text from existing file:', err.message);
+          }
         }
+      } catch (err) {
+        console.warn('[DB] Could not fetch existing profile (DB may be offline):', err.message);
       }
     }
 
@@ -75,11 +78,16 @@ async function generateRoadmap(req, res, next) {
       profileUpdate.resume = resumeData;
     }
 
-    const profile = await StudentProfile.findOneAndUpdate(
-      { email: email.toLowerCase().trim() },
-      { $set: profileUpdate },
-      { new: true, upsert: true, runValidators: true }
-    );
+    let profile = null;
+    try {
+      profile = await StudentProfile.findOneAndUpdate(
+        { email: email.toLowerCase().trim() },
+        { $set: profileUpdate },
+        { new: true, upsert: true, runValidators: true }
+      );
+    } catch (err) {
+      console.warn('[DB] Could not save profile (DB may be offline):', err.message);
+    }
 
     return res.status(200).json({
       success: true,
